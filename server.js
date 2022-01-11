@@ -3,7 +3,7 @@ const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 const formatMessage = require('./utils/messages');
-const {userJoin,getUser} = require('./utils/users');
+const {userJoin,getUser,userLeave,getRoomUsers} = require('./utils/users');
 
 const app = express();
 const server = http.createServer(app);
@@ -22,8 +22,10 @@ io.on('connection', socket => {
         io.to(user.room).emit('message',formatMessage(user.username,msg));
     });
     socket.on('disconnect', () => {
-        const user = getUser(socket.id);
-        io.emit('message',formatMessage('TseChat Bot',user.username+' has left the chat.'));
+        const user = userLeave(socket.id);
+        if (user) {
+            io.to(user.room).emit('message',formatMessage('TseChat Bot',user.username+' has left the chat.'));
+        }
     });
 });
 const PORT = 3000;
