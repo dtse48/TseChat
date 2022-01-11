@@ -4,7 +4,6 @@ const chatMessages = document.querySelector('.chat-messages');
 const socket = io();
 
 socket.on('message', message => {
-    console.log(message);
     outputMessage(message);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 })
