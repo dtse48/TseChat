@@ -1,0 +1,26 @@
+{
+  "name": "tsechat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dtse48/TseChat.git"
+  },
+  "author": "Daniel Tse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dtse48/TseChat/issues"
+  },
+  "homepage": "https://github.com/dtse48/TseChat#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "moment": "^2.29.1",
+    "nodemon": "^2.0.15",
+    "socket.io": "^4.4.1"
+  }
+}
