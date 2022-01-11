@@ -2,7 +2,7 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
-const formatMessage = require('./utils/messages')
+const formatMessage = require('./utils/messages');
 
 const app = express();
 const server = http.createServer(app);
@@ -16,7 +16,7 @@ io.on('connection', socket => {
         io.emit('message',formatMessage('TseChat Bot','A user has left the chat'));
     })
     socket.on('chatMessage', (msg) => {
-        io.emit('message',msg);
+        io.emit('message',formatMessage('User',msg));
     })
 });
 const PORT = 3000;
