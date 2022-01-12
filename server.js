@@ -16,6 +16,10 @@ io.on('connection', socket => {
         socket.join(user.room);
         socket.emit('message', formatMessage('TseChat Bot','Welcome to TseChat!'));
         socket.broadcast.to(user.room).emit('message',formatMessage('TseChat Bot',user.username +' has joined the chat!'));
+        io.to(user.room).emit('roomUsers', {
+            room: user.room,
+            users: getRoomUsers(user.room)
+        });
     });
     socket.on('chatMessage', (msg) => {
         const user = getUser(socket.id);
@@ -26,6 +30,10 @@ io.on('connection', socket => {
         if (user) {
             io.to(user.room).emit('message',formatMessage('TseChat Bot',user.username+' has left the chat.'));
         }
+        io.to(user.room).emit('roomUsers', {
+            room: user.room,
+            users: getRoomUsers(user.room)
+        });
     });
 });
 const PORT = 3000;
