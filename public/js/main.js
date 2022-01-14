@@ -44,7 +44,7 @@ function outputMessage(message) {
 }
 
 function outputRoomName(room) {
-    roomName.innerText = room;
+    roomName.innerText = "Room: "+room;
 }
 
 function outputUsers(users) {
